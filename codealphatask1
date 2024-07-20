@@ -1,0 +1,98 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator-box">
+            <h1>Age Calculator</h1>
+            <label for="dob">Enter your Date of Birth:</label>
+            <input type="date" id="dob">
+            <label for="end-date">Select End Date:</label>
+            <input type="date" id="end-date">
+            <button onclick="calculateAge()">Calculate Age</button>
+            <div id="result"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+  css
+  body {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.calculator-box {
+    background-color: white;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+}
+
+input[type="date"] {
+    padding: 5px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+
+
+
+script
+function calculateAge() {
+    const dob = document.getElementById('dob').value;
+    const endDate = document.getElementById('end-date').value;
+    const dobDate = new Date(dob);
+    const endDateDate = new Date(endDate);
+    let age = endDateDate.getFullYear() - dobDate.getFullYear();
+    const monthDiff = endDateDate.getMonth() - dobDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && endDateDate.getDate() < dobDate.getDate())) {
+        age--;
+    }
+    document.getElementById('result').innerText = `Your age is ${age} years.`;
+}
